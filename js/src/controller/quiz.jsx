@@ -1,4 +1,18 @@
-var QuestionController = {
+var Results = [];
+
+module.exports = {
+
+	results : Results,
+
+	getResults: function()
+	{
+
+	},
+
+	setResults: function()
+	{
+
+	},
 
 	getInitialQuestions: function()
 	{
@@ -543,5 +557,3 @@ var QuestionController = {
 	}
 
 };
-
-module.exports = QuestionController;

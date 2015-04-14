@@ -1,4 +1,18 @@
-var QuestionController = {
+var Results = [];
+
+module.exports = {
+
+	results : Results,
+
+	getResults: function()
+	{
+
+	},
+
+	setResults: function()
+	{
+
+	},
 
 	getInitialQuestions: function()
 	{
@@ -364,16 +378,16 @@ var QuestionController = {
 					type: 'radio',
 					answers: [
 						{
-							label: '//This comment has <br> more than one line//',
+							label: '//This comment has more than one line//',
 							val: '1'
 						},
 						{
-							label: '/*This comment has <br> more than one line*/',
+							label: '/*This comment has more than one line*/',
 							val: '2',
 							correct: '1'
 						},
 						{
-							label: '<!--This comment has <br> more than one line-->',
+							label: '<!--This comment has more than one line-->',
 							val: '3'
 						}
 					]
@@ -525,6 +539,7 @@ var QuestionController = {
 				questions.push(question);
 				i++;
 			}
+
 		}
 
 		return questions;
@@ -542,5 +557,3 @@ var QuestionController = {
 	}
 
 };
-
-module.exports = QuestionController;
