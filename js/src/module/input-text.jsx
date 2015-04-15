@@ -1,11 +1,38 @@
 var React = require('react'),
 	Input = require('react-bootstrap/lib/Input');
 
+var QuizController = require('../controller/quiz');
+
 var InputText = React.createClass({
 
-	render: function () {
+	getInitialState: function() {
+		return {
+			value: ''
+		};
+	},
+
+	handleChange: function(id)
+	{
+		var val = this.refs.input.getValue();
+
+		this.setState({ value: val });
+		QuizController.handleResult(id, val, 'text');
+	},
+
+	render: function ()
+	{
+		var placeholder = this.props.placeholder,
+			qid = this.props.name,
+			val = this.state.value;
+
 		return (
-			<Input type="text" placeholder={(this.props.placeholder != undefined && this.props.placeholder !== true) ? this.props.placeholder : 'Enter answer'} />
+			<Input
+				type="text"
+				ref='input'
+				name={qid}
+				value={val}
+				placeholder={ (placeholder != undefined && placeholder !== true) ? placeholder : 'Enter answer' }
+				onChange={this.handleChange.bind(this, qid)} />
 		)
 	}
 

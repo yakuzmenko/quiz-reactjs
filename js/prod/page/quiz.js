@@ -2,7 +2,7 @@ var React = require('react'),
 	Panel = require('react-bootstrap/lib/Panel'),
 	Button = require('react-bootstrap/lib/Button');
 
-var QuestionController = require('../controller/quiz');
+var QuizController = require('../controller/quiz');
 
 var Question = require('../module/question');
 
@@ -17,7 +17,7 @@ var QuestionContainer = React.createClass({displayName: "QuestionContainer",
 
 	render: function()
 	{
-		var questions = QuestionController.getRandomQuestions(this.questionNumber);
+		var questions = QuizController.getRandomQuestions(this.questionNumber);
 
 		return(
 			React.createElement("div", {className: "questionContainer"}, 

@@ -18,7 +18,7 @@ var Question = React.createClass({
 
 		switch (type) {
 			case 'text':
-				input = <InputText />;
+				input = <InputText name={data.qid} />;
 				style = 'warning';
 				break;
 			case 'radio':

@@ -1,22 +1,44 @@
 var React = require('react'),
 	Input = require('react-bootstrap/lib/Input');
 
+var QuizController = require('../controller/quiz');
+
 var InputRadio = React.createClass({displayName: "InputRadio",
 
 	handleChange: function(id, val)
 	{
-		//var x = e.target;
-		console.log(id);
-		console.log(val);
-
+		QuizController.handleResult(id, val, 'radio');
 	},
 
-	render: function () {
+	render: function ()
+	{
+		var label = this.props.label;
+		var qid = this.props.name;
+		var val = this.props.value;
+
+		return(
+			React.createElement(Input, {
+				type: "radio", 
+				ref: "input", 
+				label: label, 
+				name: qid, 
+				value: val, 
+				onChange: this.handleChange.bind(this, qid, val), 
+				readOnly: true})
+		)
+	}
+
+});
+
+var RadioWrapper = React.createClass({displayName: "RadioWrapper",
+
+	render: function ()
+	{
 		return (
-			React.createElement("div", null, 
+			React.createElement("div", {className: "radioWrapper"}, 
 				this.props.answers.map(function(a) {
 					return(
-						React.createElement(Input, {type: "radio", label: a.label, name: this.props.qid, value: a.val, readOnly: true, onChange: this.handleChange.bind(this, this.props.qid, a.val)})
+						React.createElement(InputRadio, {label: a.label, name: this.props.qid, value: a.val})
 					)
 				}.bind(this))
 			)
@@ -25,4 +47,4 @@ var InputRadio = React.createClass({displayName: "InputRadio",
 
 });
 
-module.exports = InputRadio;
+module.exports = RadioWrapper;
