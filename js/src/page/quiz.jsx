@@ -5,6 +5,7 @@ var React = require('react'),
 var QuizController = require('../controller/quiz');
 
 var Question = require('../module/question');
+var Timer = require('../module/timer');
 
 var Router = require('react-router');
 var Link = Router.Link;
@@ -19,6 +20,7 @@ var QuestionContainer = React.createClass({
 
 		return(
 			<div className="questionContainer">
+				<Timer />
 				<h1>Questions</h1>
 				<form>
 					{questions.map(function(q,i) {
@@ -26,7 +28,7 @@ var QuestionContainer = React.createClass({
 							<Question index={++i} data={q}/>
 						);
 					})}
-					<Button>
+					<Button className="submitQuiz">
 						<Link to='result'>Submit</Link>
 					</Button>
 				</form>

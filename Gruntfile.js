@@ -43,5 +43,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default', ['react', 'browserify']);
+	grunt.registerTask('default', ['react', 'browserify', 'uglify']);
 };
