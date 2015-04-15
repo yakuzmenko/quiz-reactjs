@@ -1,11 +1,11 @@
-var Data = require('../model/data');
+var Data = require('../store/data');
 
 module.exports = {
 
 	handleResult: function(id, val, type, checked)
 	{
-		var results = Data.getItems(),
-			prevResult = Data.getItem(id, results),
+		var results = Data.getAnswers(),
+			prevResult = Data.getAnswer(id, results),
 			result;
 
 		if ('checkbox' == type) {
@@ -14,11 +14,11 @@ module.exports = {
 
 			if (!prevResult) {
 
-				Data.setItem(result, results);
+				Data.setAnswer(result, results);
 
 			} else {
 
-				(checked) ? Data.setItem(val, prevResult.answer) : Data.removeItem(val, prevResult.answer);
+				(checked) ? Data.setAnswer(val, prevResult.answer) : Data.removeAnswer(val, prevResult.answer);
 
 			}
 
@@ -28,12 +28,12 @@ module.exports = {
 
 			if (!prevResult) {
 
-				Data.setItem(result, results);
+				Data.setAnswer(result, results);
 
 			} else {
 
-				Data.removeItem(prevResult, results);
-				Data.setItem(result, results);
+				Data.removeAnswer(prevResult, results);
+				Data.setAnswer(result, results);
 
 			}
 		}
@@ -46,38 +46,19 @@ module.exports = {
 		return Data.initialData;
 	},
 
-	getRandomQuestions: function(n)
+	getRandomQuestions: function()
 	{
-		var data = this.getInitialQuestions(),
-			questions = [],
-			i = 0;
-
-		while (i < n)
-		{
-			var question = data[Math.floor(Math.random()*data.length)];
-
-			if (questions.length > 0) {
-				if ( this.isQuestionExist(question.qid, 'qid', questions) ) { continue; }
-				questions.push(question);
-				i++;
-			} else {
-				questions.push(question);
-				i++;
-			}
-
-		}
-
-		return questions;
+		return Data.questions;
 	},
 
-	isQuestionExist: function(val, prop, array)
+	getAnswers: function()
 	{
-		for (var i=0; i < array.length; i++) {
-			if (array[i][prop] === val) {
-				return true;
-			}
-		}
+		return Data.answers;
+	},
 
-		return false;
+	randomizeQuestions: function(n)
+	{
+		return Data.randomizeQuestions(n);
 	}
+
 };

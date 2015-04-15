@@ -16,9 +16,6 @@ var InputText = React.createClass({displayName: "InputText",
 		var val = this.refs.input.getValue();
 
 		this.setState({ value: val });
-
-		console.log(id, val, this.state.value, this.refs.input.getValue());
-
 		QuizController.handleResult(id, val, 'text');
 	},
 

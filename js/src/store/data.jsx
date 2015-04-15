@@ -1,8 +1,8 @@
-var Results = [];
-
 module.exports = {
 
-	collection: Results,
+	answers: [],
+	
+	questions: [],
 
 	initialData: [
 		{
@@ -507,12 +507,12 @@ module.exports = {
 		}
 	],
 
-	getItems: function()
+	getAnswers: function()
 	{
-		return this.collection;
+		return this.answers;
 	},
 
-	getItem: function(id, array)
+	getAnswer: function(id, array)
 	{
 		if (array.length > 0) {
 			for (var i = 0; i < array.length; i++) {
@@ -525,14 +525,14 @@ module.exports = {
 		return false;
 	},
 
-	setItem: function(item, array)
+	setAnswer: function(item, array)
 	{
 		array.push(item);
 
 		return array;
 	},
 
-	removeItem: function(item, array)
+	removeAnswer: function(item, array)
 	{
 		var index = array.indexOf(item);
 
@@ -541,5 +541,41 @@ module.exports = {
 		}
 
 		return array;
+	},
+
+	randomizeQuestions: function(n)
+	{
+		var data = this.initialData,
+			questions = this.questions,
+			i = 0;
+
+		while (i < n)
+		{
+			var question = data[Math.floor(Math.random()*data.length)];
+
+			if (questions.length > 0) {
+				if ( this.isQuestionExist(question.qid, 'qid', questions) ) { continue; }
+				questions.push(question);
+				i++;
+			} else {
+				questions.push(question);
+				i++;
+			}
+
+		}
+
+		return questions;
+	},
+
+	isQuestionExist: function(val, prop, array)
+	{
+		for (var i=0; i < array.length; i++) {
+			if (array[i][prop] === val) {
+				return true;
+			}
+		}
+
+		return false;
 	}
+	
 };

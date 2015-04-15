@@ -6,18 +6,16 @@ var QuizController = require('../controller/quiz');
 
 var Question = require('../module/question');
 
+var Router = require('react-router');
+var Link = Router.Link;
+
 var QuestionContainer = React.createClass({
 
 	questionNumber: 10,
 
-	handleSubmit: function()
-	{
-		window.location.href += 'result';
-	},
-
 	render: function()
 	{
-		var questions = QuizController.getRandomQuestions(this.questionNumber);
+		var questions = QuizController.randomizeQuestions(this.questionNumber);
 
 		return(
 			<div className="questionContainer">
@@ -28,7 +26,9 @@ var QuestionContainer = React.createClass({
 							<Question index={++i} data={q}/>
 						);
 					})}
-					<Button onClick={this.handleSubmit}>Submit</Button>
+					<Button>
+						<Link to='result'>Submit</Link>
+					</Button>
 				</form>
 			</div>
 		);

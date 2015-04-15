@@ -1,19 +1,31 @@
-var React = require('react');
+var React = require('react'),
+	Panel = require('react-bootstrap/lib/Panel'),
+	Button = require('react-bootstrap/lib/Button');
 
-var Router = require('react-router'); // or var Router = ReactRouter; in browsers
+var QuizController = require('../controller/quiz');
 
-var DefaultRoute = Router.DefaultRoute;
+var Router = require('react-router');
 var Link = Router.Link;
-var Route = Router.Route;
-var RouteHandler = Router.RouteHandler;
 
 module.exports = React.createClass({
 
 	render: function()
 	{
-		return (<div>
-			test
-		</div>)
+		var questions = QuizController.getRandomQuestions();
+		var answers = QuizController.getAnswers();
+
+		return (
+			<div className="questionContainer">
+				<h1>Results</h1>
+				<div>
+					{console.log(questions)}
+					{console.log(answers)}
+					<Button>
+						<Link to='quiz'>Back to Quiz</Link>
+					</Button>
+				</div>
+			</div>
+		)
 	}
 
 });

@@ -1,10 +1,5 @@
 var React = require('react');
-
-var Router = require('react-router'); // or var Router = ReactRouter; in browsers
-
-var DefaultRoute = Router.DefaultRoute;
-var Link = Router.Link;
-var Route = Router.Route;
+var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
 
 module.exports = React.createClass({
@@ -13,8 +8,7 @@ module.exports = React.createClass({
 	{
 		return (
 			<div>
-			<Link to='result'>Link to result</Link>
-			<RouteHandler/>
+				<RouteHandler/>
 			</div>
 		)
 	}
